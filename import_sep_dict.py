@@ -2,11 +2,19 @@ import requests
 import html
 import pickle
 
-def create_SEP_dict(pickled=False):
-	# r = requests.get('https://plato.stanford.edu/contents.html')
-	# content = r.text
-	# pickle.dump(content, open('sep_content.pickle', 'wb'))
-	content = pickle.load(open('sep_content.pickle', 'rb'))
+def create_SEP_dict(content=False, pickled=False):
+	if content is False:
+		r = requests.get('https://plato.stanford.edu/contents.html')
+		content = r.text
+		pickle.dump(content, open('sep_content.pickle', 'wb'))
+	else:
+		try:
+			content = pickle.load(open('sep_content.pickle', 'rb'))
+		except:
+			r = requests.get('https://plato.stanford.edu/contents.html')
+			content = r.text
+			pickle.dump(content, open('sep_content.pickle', 'wb'))
+
 	idx1 = content.find('<div id="content">')
 	content = content[idx1:]
 	idx2 = content.find('</div>')
@@ -251,9 +259,9 @@ def create_SEP_dict(pickled=False):
 
 
 if __name__ == '__main__':
-	SEP_dict = create_SEP_dict(pickled=False)
+	SEP_dict = create_SEP_dict(content=True, pickled=False)
 	# link = SEP_dict[ENTER KEY]
 	# URL = 'https://plato.stanford.edu/{}'.format(link)
 
-	# for key in sorted(SEP_dict.keys()):
-	# 	print(key)
+	for key in sorted(SEP_dict.keys()):
+		print(key)
