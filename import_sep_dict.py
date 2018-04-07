@@ -29,7 +29,7 @@ def create_SEP_dict(pickled=False):
 	del lines[-1]
 
 	for line in lines:
-		for x in line: # handles Ibn Sina (Avicenna) special case (line 1513 in 'listed_contents.txt')
+		for x in line: # handles Ibn Sina (Avicenna) special case
 			if '<ul>' in x and '</ul>' in x:
 				lines.remove(line)
 
@@ -102,7 +102,7 @@ def create_SEP_dict(pickled=False):
 				x = line[0].index('</strong>')
 				link = line[0][:i-2]
 				title = line[0][i+8:x] + line[0][x+13:]
-				if '<em>' in title: # only one item fulfills this logic ("Principia")
+				if '<em>' in title: # handles the "Principia" special case
 					title = title.replace('<em>', '').replace('</em>', '')
 				final_dict = {title: link}
 				working_content.append(final_dict)
@@ -170,7 +170,7 @@ def create_SEP_dict(pickled=False):
 				final_dict = {line[0]: inner_dict}
 				working_content.append(final_dict)
 
-		elif len(line) > 2: # 152 items to be appended here; this will complete the process
+		elif len(line) > 2:
 			group = []
 			for l in line:
 				if '<ul>' in l: # This picks out title items
