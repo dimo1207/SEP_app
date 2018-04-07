@@ -1,7 +1,6 @@
 import requests
 import html
 import pickle
-# URL = 'https://plato.stanford.edu/contents/{}'format(link)
 
 def create_SEP_dict(pickled=False):
 	# r = requests.get('https://plato.stanford.edu/contents.html')
@@ -253,6 +252,8 @@ def create_SEP_dict(pickled=False):
 
 if __name__ == '__main__':
 	SEP_dict = create_SEP_dict(pickled=False)
-	# print(SEP_dict['aesthetics'])
-	# for key in SEP_dict['aesthetics'].keys():
+	# link = SEP_dict[ENTER KEY]
+	# URL = 'https://plato.stanford.edu/{}'.format(link)
+
+	# for key in sorted(SEP_dict.keys()):
 	# 	print(key)
